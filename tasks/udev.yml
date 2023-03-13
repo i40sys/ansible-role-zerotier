@@ -8,7 +8,7 @@
       ACTION=="add", SUBSYSTEM=="net", KERNEL=="{{ zerotier_interface }}", RUN+="/usr/sbin/netplan apply"
 
 - name: Restart systemd-udevd.service
-  ansible.posix.systemd:
+  ansible.builtin.systemd:
     name: systemd-udevd.service
     state: restarted
-  become: true
+    daemon_reload: true
