@@ -4,6 +4,6 @@
   gather_facts: true
   become: true
   roles:
-    - name: "supertylerc.zerotier"
+    - name: "ansible-role-zerotier"
       vars:
         zerotier_network_id: "e4da7455b28f95e6"
