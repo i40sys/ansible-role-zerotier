@@ -14,7 +14,7 @@
 
 - name: "Set network configuration"
   ansible.builtin.shell: |
-    zerotier-cli set {{ zerotier_network_id }} allowManaged {{ allow_managed }} allowGlobal {{ allow_global }} allowDefault {{ allow_default }} allowDNS {{ allow_dns }}
+    zerotier-cli set {{ zerotier_network_id }} allowManaged={{ allow_managed }} allowGlobal={{ allow_global }} allowDefault={{ allow_default }} allowDNS={{ allow_dns }}
 
 - name: Discover ZeroTier interface name
   ansible.builtin.shell: zerotier-cli listnetworks
