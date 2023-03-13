@@ -9,25 +9,25 @@
     content: |
       network:
         version: 2
-      ethernets:
-        eth0:
-          addresses: []
-          dhcp4: false
-          optional: true
-        {{ zerotier_interface }}:
-          addresses: []
-          dhcp4: false
-          optional: true
-      bridges:
-        br0:
-          dhcp4: false
-          addresses: [{{ zerotier_ip_address }}]
-          gateway4: {{ zerotier_gateway }}
-          nameservers:
-            addresses: [{{ zerotier_dns }}]
-          interfaces:
-            - {{ lan_interface }}
-            - {{ zerotier_interface }}
+        ethernets:
+          eth0:
+            addresses: []
+            dhcp4: false
+            optional: true
+          {{ zerotier_interface }}:
+            addresses: []
+            dhcp4: false
+            optional: true
+        bridges:
+          br0:
+            dhcp4: false
+            addresses: [{{ zerotier_ip_address }}]
+            gateway4: {{ zerotier_gateway }}
+            nameservers:
+              addresses: [{{ zerotier_dns }}]
+            interfaces:
+              - {{ lan_interface }}
+              - {{ zerotier_interface }}
       
 
 - name: Apply netplan
