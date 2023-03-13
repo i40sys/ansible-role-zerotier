@@ -17,8 +17,8 @@
             nameservers:
               addresses: [{{ zerotier_dns }}]
             interfaces:
-              - {{ lan_interface }}}
-              - {{ zerotier_interface }}}
+              - {{ lan_interface }}
+              - {{ zerotier_interface }}
 
 - name: Apply netplan
   command: sudo netplan apply
