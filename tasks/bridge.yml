@@ -1,0 +1,24 @@
+- name: Instalar bridge-utils
+  ansible.posix.apt:
+    name: bridge-utils
+    state: present
+
+- name: Copy netplan configuration file
+  ansible.builtin.copy:
+    dest: /etc/netplan/50-cloud-init.yaml
+    content: |
+      network:
+        version: 2
+        bridges:
+          br0:
+            dhcp4: false
+            addresses: [{{ zerotier_ip_address }}]
+            gateway4: {{ zerotier_gateway }}
+            nameservers:
+              addresses: [{{ zerotier_dns }}]
+            interfaces:
+              - {{ lan_interface }}}
+              - {{ zerotier_interface }}}
+
+- name: Aplicar configuración de Netplan
+  netplan_apply:

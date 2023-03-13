@@ -1,0 +1,32 @@
+---
+- name: Set ipv4 forwarding
+  ansible.posix.sysctl:
+    name: net.ipv4.ip_forward
+    value: '1'
+    state: present
+
+- name: Join a ZeroTier Network
+  ansible.builtin.command:
+    argv:
+      - "zerotier-cli"
+      - "join"
+      - "{{ zerotier_network_id }}"
+
+- name: "Set network configuration: {{ zerotier_network_id }} - {{ allow_managed }}"
+  ansible.builtin.shell: |
+      zerotier-cli set {{ zerotier_network_id }} allowManaged {{ allow_managed }} allowGlobal {{ allow_global }} allowDefault {{ allow_default }} allowDNS {{ allow_dns }}"
+
+- name: Discover ZeroTier interface name
+  ansible.builtin.shell: zerotier-cli listnetworks
+  register: zerotier_networks
+
+- name: Print ZeroTier interface name and register in a variable
+  ansible.builtin.debug:
+    var: item.name
+  loop: "{{ zerotier_networks.stdout_lines[1:] }}"
+  when: my_zerotier_network_id in item
+  register: zerotier_interface_result
+
+- name: Set ZeroTier interface name variable
+  ansible.builtin.set_fact:
+    zerotier_interface: "{{ zerotier_interface_result.results[0].stdout }}"

@@ -1,0 +1,12 @@
+- name: Create a new rule for applying Netplan configuration everytime a new ZeroTier interface is created
+  ansible.posix.udev:
+    name: 99-netplan-apply.rules
+    state: present
+    content: |
+      ACTION=="add", SUBSYSTEM=="net", KERNEL=="{{ zerotier_interface }}", RUN+="/usr/sbin/netplan apply"
+
+- name: Restart systemd-udevd.service
+  ansible.posix.systemd:
+    name: systemd-udevd.service
+    state: restarted
+  become: true
