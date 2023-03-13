@@ -1,5 +1,5 @@
 - name: Instalar bridge-utils
-  ansible.posix.apt:
+  ansible.builtin.apt:
     name: bridge-utils
     state: present
 
@@ -20,5 +20,7 @@
               - {{ lan_interface }}}
               - {{ zerotier_interface }}}
 
-- name: Aplicar configuración de Netplan
-  netplan_apply:
+- name: Apply netplan
+  command: sudo netplan apply
+  async: 45
+  poll: 0
