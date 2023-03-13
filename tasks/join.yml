@@ -27,6 +27,10 @@
   when: zerotier_network_id in item
   register: zerotier_interface_result
 
+- name: Print value of zerotier_interface_result variable
+  debug:
+    var: zerotier_interface_result
+
 - name: Set ZeroTier interface name variable
   ansible.builtin.set_fact:
     zerotier_interface: "{{ zerotier_interface_result.split()[7] }}"
