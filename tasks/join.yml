@@ -24,7 +24,7 @@
   ansible.builtin.debug:
     var: item.name
   loop: "{{ zerotier_networks.stdout_lines[1:] }}"
-  when: my_zerotier_network_id in item
+  when: zerotier_network_id in item
   register: zerotier_interface_result
 
 - name: Set ZeroTier interface name variable
