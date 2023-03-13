@@ -20,6 +20,10 @@
   ansible.builtin.shell: zerotier-cli listnetworks
   register: zerotier_networks
 
+- name: Print value of zerotier_interface_result variable
+  debug:
+    var: zerotier_networks
+
 - name: Print ZeroTier interface name and register in a variable
   ansible.builtin.debug:
     var: item
