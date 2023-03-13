@@ -22,7 +22,7 @@
 
 - name: Print value of zerotier_interface_result variable
   debug:
-    var: zerotier_networks
+    var: zerotier_networks.stdout | from_json
 
 # - name: Print ZeroTier interface name and register in a variable
 #   ansible.builtin.debug:
