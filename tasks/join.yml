@@ -17,24 +17,28 @@
     zerotier-cli set {{ zerotier_network_id }} allowManaged={{ allow_managed }} allowGlobal={{ allow_global }} allowDefault={{ allow_default }} allowDNS={{ allow_dns }}
 
 - name: Discover ZeroTier interface name
-  ansible.builtin.shell: zerotier-cli listnetworks
+  ansible.builtin.shell: zerotier-cli listnetworks -j
   register: zerotier_networks
 
-- name: Print value of zerotier_interface_result variable
-  debug:
-    var: zerotier_networks
+# - name: Print value of zerotier_interface_result variable
+#   debug:
+#     var: zerotier_networks
 
-- name: Print ZeroTier interface name and register in a variable
-  ansible.builtin.debug:
-    var: item
-  loop: "{{ zerotier_networks.stdout_lines[1:] }}"
-  when: zerotier_network_id in item
-  register: zerotier_interface_result
+# - name: Print ZeroTier interface name and register in a variable
+#   ansible.builtin.debug:
+#     var: item
+#   loop: "{{ zerotier_networks.stdout_lines[1:] }}"
+#   when: zerotier_network_id in item
+#   register: zerotier_interface_result
 
-- name: Print value of zerotier_interface_result variable
-  debug:
-    var: zerotier_interface_result
+# - name: Print value of zerotier_interface_result variable
+#   debug:
+#     var: zerotier_interface_result
 
-- name: Set ZeroTier interface name variable
-  ansible.builtin.set_fact:
-    zerotier_interface: "{{ zerotier_interface_result.split()[7] }}"
+# - name: Set ZeroTier interface name variable
+#   ansible.builtin.set_fact:
+#     zerotier_interface: "{{ zerotier_interface_result.split()[7] }}"
+
+- name: Extract interface name of e4da7455b28f95e6 network
+  set_fact:
+    zerotier_interface: "{{ zerotier_networks.stdout | from_json | json_query('[?id==`{{ zerotier_network_id }}`].name | [0]') }}"
