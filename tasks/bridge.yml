@@ -10,13 +10,16 @@
       network:
         version: 2
         ethernets:
-          eth0:
+          {{ lan_interface }}:
             addresses: []
             dhcp4: false
             optional: true
           {{ zerotier_interface }}:
             addresses: []
             dhcp4: false
+            optional: true
+          {{ wan_interface }}:
+            dhcp4: true
             optional: true
         bridges:
           br0:
@@ -25,9 +28,6 @@
                 stp: true
                 forward-delay: 0
             addresses: [{{ zerotier_ip_address }}]
-            gateway4: {{ zerotier_gateway }}
-            nameservers:
-              addresses: [{{ zerotier_dns }}]
             interfaces:
               - {{ lan_interface }}
               - {{ zerotier_interface }}

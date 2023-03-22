@@ -6,8 +6,7 @@
   roles:
     - name: "ansible-role-zerotier"
       vars:
-        zerotier_network_id: "e4da7455b28f95e6"
-        zerotier_ip_address: "10.2.0.171/24"
-        zerotier_gateway: "10.2.0.1"
-        zerotier_dns: "10.2.10.27"
+        zerotier_network_id: "abfd31bd474d749a"
+        zerotier_ip_address: "172.26.115.180/20"
         lan_interface: "eth0"
+        wan_interface: "eth1"
