@@ -31,7 +31,6 @@
             interfaces:
               - {{ lan_interface }}
               - {{ zerotier_interface }}
-      
 
 - name: Apply netplan
   command: sudo netplan apply
