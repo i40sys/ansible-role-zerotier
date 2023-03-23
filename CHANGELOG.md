@@ -1,3 +1,6 @@
+v1.0.1 2021-03-23 
+  - Fixed role name
+
 v1.0.0 2021-03-22 
   - First public release
   - Improved docunmentation and added license
