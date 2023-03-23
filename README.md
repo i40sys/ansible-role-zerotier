@@ -64,7 +64,7 @@ test.yml
   gather_facts: true
   become: true
   roles:
-    - name: "zerotier-bridge-ansible-role"
+    - name: "i40sys.zerotier_bridge_ansible_role"
       vars:
         zerotier_network_id: "abfd31bd474d749a"
         zerotier_ip_address: "172.26.115.180/20"
@@ -75,7 +75,7 @@ test.yml
 CLI commands:
 ```bash
 # install ansible role from ansible-galaxy
-ansible-galaxy install i40sys.zerotier-bridge-ansible-role
+ansible-galaxy install i40sys.zerotier_bridge_ansible_role
 # launch the playbook
 ansible-playbook -i inventory.yaml test.yml
 
