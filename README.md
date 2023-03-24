@@ -72,10 +72,13 @@ test.yml
         wan_interface: "eth1"
 ```
 
-CLI commands:
+CLI commands, assuming that we're in the tests directory:
 ```bash
 # install ansible role from ansible-galaxy
 ansible-galaxy install i40sys.zerotier_bridge_ansible_role
+# or, if you want to install it from a local requirements file
+ansible-galaxy install -r roles/requirements.yml
+
 # launch the playbook
 ansible-playbook -i inventory.yaml test.yml
 

@@ -1,3 +1,8 @@
+v.1.0.3 2021-03-24
+  - Added role requirements in the tests directory
+  - Changed the version tag format for fitting with Ansible Galaxy requirements
+  - Upadted README.md notes
+
 v1.0.2 2023-03-23
   - Fixed documentation and tests
 
